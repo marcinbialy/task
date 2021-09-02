@@ -1,0 +1,10 @@
+mkdir server
+cd server
+npm init --yes
+npm i express
+npm i nodemon
+npm i joi
+npm i --save sequelize
+npm install --save sqlite3
+npm install -g sequelize-cli
+sequelize init
