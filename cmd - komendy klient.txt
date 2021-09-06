@@ -1,0 +1,8 @@
+mkdir client
+cd client 
+npm init --yes
+npm install -g vue-cli
+vue init webpack
+npm install --save axios
+
+npm run dev - startowanie aplikacji

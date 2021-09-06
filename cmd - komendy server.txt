@@ -8,3 +8,6 @@ npm i --save sequelize
 npm install --save sqlite3
 npm install -g sequelize-cli
 sequelize init
+npm install cors
+
+nodemon app.js - startowanie aplikacji 

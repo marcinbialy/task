@@ -3,7 +3,7 @@ const {sequelize, Task, Test} = require('./models');
 
 function validateList(item){
     const schema = Joi.object({
-        name: Joi.string().min(5).required(),
+        name: Joi.string().min(3).required(),
         isComplete: Joi.bool().required()
     });
 
@@ -18,14 +18,12 @@ module.exports = (app) => {
     }),
 
     app.get('/api/list', async(req, res) => {
-        
-        const tasklist = await Task.findAll();
+        const tasklist = await Task.findAll({order: [['createdAt', 'DESC']] });
         res.send(tasklist);
     }),
 
     app.get('/api/list/:id', async(req, res) => {
         const idd = await Task.findOne({where: {id: parseInt(req.params.id)}});
-        console.log(idd)
         if (!idd) return res.status(404).send('Not found');
 
         res.send(idd);
@@ -43,6 +41,7 @@ module.exports = (app) => {
 
     app.post('/api/list/create', async(req,res) => {
         try {
+            console.log(req.body)
             const { error } = validateList(req.body);
             if(error){
                 res.status(400).send(error.details[0].message);
